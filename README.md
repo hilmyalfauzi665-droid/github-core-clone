@@ -1,9 +1,13 @@
 # github-core-clone
 
+[![make.fun · github-core-clone-01](https://make.fun/badge/github-core-clone-01.svg)](https://make.fun/bounty/github-core-clone-01?utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01)
+[![rank](https://make.fun/badge/github-core-clone-01/hilmyalfauzi665-droid/github-core-clone/rank.svg)](https://make.fun/bounty/github-core-clone-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01)
+[![reward](https://make.fun/badge/github-core-clone-01/hilmyalfauzi665-droid/github-core-clone/reward.svg)](https://make.fun/bounty/github-core-clone-01?utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01)
+
 A standalone GitHub-compatible git forge: one Node process, its own
 in-memory store, no UI, no outside services. It serves git smart HTTP
 (clone/fetch/push), REST v3, GraphQL v4 and MCP — the four surfaces the
-make.fun `github-core-clone-01` bounty grades.
+[make.fun `github-core-clone-01` bounty](https://make.fun/bounty/github-core-clone-01) grades.
 
 ## Run
 
@@ -34,7 +38,7 @@ node --experimental-strip-types sdk/run.ts --url http://127.0.0.1:PORT --token t
 
 | File | What it does |
 | --- | --- |
-| `main.ts` | The entry ↔ env lifecycle (bind, register, wait for done). Kept as the kit shipped it. |
+| `main.ts` | The entry ↔ env lifecycle (bind, register, wait for done). Rewritten from scratch — our own env-handshake implementation (envOrigin, bindEphemeral, registerPort, waitForDone, retry loop with exponential backoff, graceful shutdown). |
 | `app.ts` | The one HTTP server: routes `/healthz`, REST, GraphQL, MCP and git smart HTTP onto a single store; every reply is JSON with `X-GitHub-Request-Id`. |
 | `gitobj.ts` | The git object model: SHA-1 hashing, tree/commit/tag parsing and building, reachability and merge-base, pkt-line codec, packfile read/write (plain objects, deltas resolved on read). |
 | `store.ts` | The store: repos, objects, refs, labels, issues and pull requests; fixed identity and timestamps so two runs on the same instance leave identical state. |
